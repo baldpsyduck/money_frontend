@@ -2,7 +2,7 @@ import AniContainer from "style/AniContainer";
 import styled from "@emotion/styled";
 import { useRef } from "react";
 import getCss from "utils/getCss";
-import { iconProps } from "types/icon";
+import { iconProps } from "static/types/icon";
 
 export default function Menu(props: iconProps<HTMLDivElement>) {
   const { cssStyle, isActive, ...otherProps } = props;

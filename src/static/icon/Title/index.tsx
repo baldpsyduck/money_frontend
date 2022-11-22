@@ -1,4 +1,4 @@
-import { iconProps } from "types/icon";
+import { iconProps } from "static/types/icon";
 import basicColor from "static/color/staticColors";
 import AniIcon from "components/AniIcon";
 import { useRef } from "react";
@@ -24,15 +24,15 @@ export default function Title(props: iconProps<HTMLOrSVGElement>) {
     >
       <AniIcon needAnimation={isActive} needFill fillColor={basicColor} typename="path">
         {mapNodes(ds, "path", (d, key) => {
-          return <path key={key} stroke={basicColor} strokeWidth={1} d={d} />;
+          return <path  fill-rule="evenodd" clip-rule="evenodd" key={key} stroke={basicColor} strokeWidth={3} d={d} />;
         })}
       </AniIcon>
       <AniIcon needAnimation={isActive} typename="rect">
         <rect
-          x="1"
-          y="1"
-          width="948"
-          height="948"
+          x="12.5"
+          y="12.5"
+          width="923"
+          height="923"
           rx="474"
           stroke={basicColor}
           strokeWidth="25"
@@ -62,7 +62,7 @@ export function TitleWithText(props: iconProps<HTMLOrSVGElement>) {
         <Title isActive={isActive} {...other} />
         <AniIcon needAnimation={isActive} needFill fillColor={basicColor} typename="path">
           {mapNodes(texts.current, "titleText", (n, key) => {
-            return <path d={n} key={key} stroke={basicColor} strokeWidth={2} />;
+            return <path d={n} key={key} stroke={basicColor} strokeWidth={15} />;
           })}
         </AniIcon>
       </svg>

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import AniContainer from "style/AniContainer";
-import { iconProps } from "types/icon";
+import { iconProps } from "static/types/icon";
 import getCss from "utils/getCss";
 import useMap from "utils/hooks/useMap";
 

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
-import colorType from 'types/color';
+import colorType from 'static/types/color';
 import {getTheme} from 'static/color/themeColor'
 
 const initialState: { style: colorType } = { style:getTheme(false) };

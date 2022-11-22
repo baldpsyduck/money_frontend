@@ -1,4 +1,4 @@
-import { theme } from "types/color";
+import { theme } from "static/types/color";
 export function getTheme (isNight: boolean = false) {
   const res: theme = {
     basic: isNight ? "black" : "white",
