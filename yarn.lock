@@ -1209,6 +1209,11 @@
   resolved "https://registry.npmmirror.com/@csstools/selector-specificity/-/selector-specificity-2.0.1.tgz#b6b8d81780b9a9f6459f4bfe9226ac6aefaefe87"
   integrity sha512-aG20vknL4/YjQF9BSV7ts4EWm/yrjagAN7OWBNmlbEOUiu0llj4OGrFoOKK3g2vey4/p2omKCoHrWtPxSwV3HA==
 
+"@dimforge/rapier3d-compat@0.10.0":
+  version "0.10.0"
+  resolved "https://registry.npmmirror.com/@dimforge/rapier3d-compat/-/rapier3d-compat-0.10.0.tgz#d8c3c75ea5183cfdc0db616a6ee9b0983a219d4c"
+  integrity sha512-3SPxyAnPQz9P3cIhgF8VncwJwrqyAW2xsNEYgXbxDhvB2IaIG63eTX7rNIJUnec5FDYqgvVo/nqY1XarzT5T2Q==
+
 "@emotion/babel-plugin@^11.7.1":
   version "11.9.2"
   resolved "https://registry.npmmirror.com/@emotion/babel-plugin/-/babel-plugin-11.9.2.tgz#723b6d394c89fb2ef782229d92ba95a740576e95"
@@ -1700,6 +1705,14 @@
   resolved "https://registry.npmmirror.com/@react-spring/types/-/types-9.5.2.tgz#cce1b03afbafb23edfb9cd8c517cc7462abffb65"
   integrity sha512-n/wBRSHPqTmEd4BFWY6TeR1o/UY+3ujoqMxLjqy90CcY/ozJzDRuREL3c+pxMeTF2+B7dX33dTPCtFMX51nbxg==
 
+"@react-three/csg@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.npmmirror.com/@react-three/csg/-/csg-1.1.5.tgz#9725973b9a6b39e8e2a685f8a200928798d1abc2"
+  integrity sha512-b/xejsRHPjwDtd44X8VtoLkXC+Vc/PRt/SqA5dSYocn3efFZkk0CZCubDhAzR0rj+Ydbqr3AXVPWPo6YLqRIHw==
+  dependencies:
+    react-merge-refs "^1.1.0"
+    three-bvh-csg "^0.0.2"
+
 "@react-three/drei@^9.26.0":
   version "9.26.0"
   resolved "https://registry.npmmirror.com/@react-three/drei/-/drei-9.26.0.tgz#f69df685f1a99fa45cb40563d52cb2f48bbf1907"
@@ -1735,6 +1748,25 @@
     scheduler "^0.21.0"
     suspend-react "^0.0.8"
     zustand "^3.7.1"
+
+"@react-three/postprocessing@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.npmmirror.com/@react-three/postprocessing/-/postprocessing-2.7.0.tgz#bae6be248bdb43cbab3d125b23ba5b0de4d934d2"
+  integrity sha512-lJfV8GYp+L1SlGRcl8QPUg9QMdO+8ojW2kfaEc/MuvoI4rX3TRhVd3qFjjF++0bBmzt8LeQpDHCOHFAaT3MNYA==
+  dependencies:
+    postprocessing "^6.29.0"
+    react-merge-refs "^1.1.0"
+    screen-space-reflections "2.5.0"
+    three-stdlib "^2.8.11"
+
+"@react-three/rapier@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.npmmirror.com/@react-three/rapier/-/rapier-0.11.0.tgz#a711adcd9022303dc8238e0c11765284a8387686"
+  integrity sha512-AqpDyZMVeC65tkJXkK5RN7ZCUFt/Zp5tquMEAUILJwFJLt7JPacwEM3E3WjqAMGoJEsP8uD/7zAOvzGHd1P7Rw==
+  dependencies:
+    "@dimforge/rapier3d-compat" "0.10.0"
+    three-stdlib "^2.15.0"
+    use-asset "^1.0.4"
 
 "@reduxjs/toolkit@^1.8.2":
   version "1.8.2"
@@ -7437,6 +7469,11 @@ postcss@^8.3.5, postcss@^8.4.14, postcss@^8.4.4, postcss@^8.4.7:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+postprocessing@^6.29.0:
+  version "6.29.1"
+  resolved "https://registry.npmmirror.com/postprocessing/-/postprocessing-6.29.1.tgz#169b48cca498a52d3ee4b8960645b089cc7f64b3"
+  integrity sha512-w+XoL2Z7YpVDsHbIeg6sldMMmDqZS4Hul1FDq3TjOeXZ0Wnp0Qy1EvR7QmYJxyWBux1cKQx/k3XO7LxfvPsZyg==
+
 potpack@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/potpack/-/potpack-1.0.2.tgz#23b99e64eb74f5741ffe7656b5b5c4ddce8dfc14"
@@ -8127,6 +8164,11 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
 
+screen-space-reflections@2.5.0:
+  version "2.5.0"
+  resolved "https://registry.npmmirror.com/screen-space-reflections/-/screen-space-reflections-2.5.0.tgz#2a6ea982da96f9c35f34a361b2555439f9fbb1f6"
+  integrity sha512-fWSDMhJS0xwD3LTxRRch7Lb9NzxsR66sCmtDmAA7i+OGnghUrBBsrha85ng7StnCBaLq/BKmZ97dLxWd1XgWdQ==
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -8730,6 +8772,11 @@ text-table@^0.2.0:
   resolved "https://registry.npmmirror.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==
 
+three-bvh-csg@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmmirror.com/three-bvh-csg/-/three-bvh-csg-0.0.2.tgz#1e7c9d68bf02e37d3a520f6d9ada5b8d9771ccfa"
+  integrity sha512-5T1BP1iRjvrG0YIt6G5GwQNgTGHKHrDfRajG10qIVrfjk2QXcwu6rfmSOm+TW7IZQbTcpiBp1/wePyiaYmdlIw==
+
 three-mesh-bvh@^0.5.15:
   version "0.5.15"
   resolved "https://registry.npmmirror.com/three-mesh-bvh/-/three-mesh-bvh-0.5.15.tgz#bcf681d784d8988618344a5e11e7ded7e76ee86a"
@@ -8739,6 +8786,23 @@ three-stdlib@^2.14.3:
   version "2.15.0"
   resolved "https://registry.npmmirror.com/three-stdlib/-/three-stdlib-2.15.0.tgz#2f5c43ea95c8f6eb1add95dd0e7c5bd6ea769838"
   integrity sha512-81jgpEajYB1HczIKAqcG8oEgRPbKJr/8KfxMY3xIHe9kDNw426PckStLt+GVmV15ezOS+QlUFVSuyjSRPpSLsg==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    "@types/offscreencanvas" "^2019.6.4"
+    "@webgpu/glslang" "^0.0.15"
+    chevrotain "^10.1.2"
+    draco3d "^1.4.1"
+    fflate "^0.6.9"
+    ktx-parse "^0.4.5"
+    mmd-parser "^1.0.4"
+    opentype.js "^1.3.3"
+    potpack "^1.0.1"
+    zstddec "^0.0.2"
+
+three-stdlib@^2.15.0, three-stdlib@^2.8.11:
+  version "2.19.0"
+  resolved "https://registry.npmmirror.com/three-stdlib/-/three-stdlib-2.19.0.tgz#22b73fe07b2524548b486e551737db4b17586beb"
+  integrity sha512-ImKJXIlmx/iYH3U2CeLiYA2V60UqhpwLE2ErOME+FrD3Xodk7oQU5N9IZGKQzGjnl3hOfLmLZ5BPJrotmttBjg==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@types/offscreencanvas" "^2019.6.4"
@@ -9002,6 +9066,13 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-asset@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmmirror.com/use-asset/-/use-asset-1.0.4.tgz#506caafc29f602890593799e58b577b70293a6e2"
+  integrity sha512-7/hqDrWa0iMnCoET9W1T07EmD4Eg/Wmoj/X8TGBc++ECRK4m5yTsjP4O6s0yagbxfqIOuUkIxe2/sA+VR2GxZA==
+  dependencies:
+    fast-deep-equal "^3.1.3"
 
 use-sync-external-store@^1.0.0:
   version "1.2.0"

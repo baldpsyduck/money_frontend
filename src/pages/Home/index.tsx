@@ -13,5 +13,7 @@ export default function Home() {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  position: absolute;
+  top:-3.5rem;
 `;

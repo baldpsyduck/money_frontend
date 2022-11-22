@@ -12,12 +12,13 @@ import getCss from "utils/getCss";
 import { changeShow } from "store/features/drawer";
 import Drawer from "components/Drawer";
 import DrawerInner from "./DrawerInner";
+import {getTheme} from 'static/color/themeColor'
 
 export default function TopBar() {
   // 主题色
   const themeColor = useAppSelector((s) => s.style.style);
   // 夜间模式判断
-  const [isNight, setIsNight] = useState(false);
+  const [isNight, setIsNight] = useState(JSON.stringify(themeColor)===JSON.stringify(getTheme(true)));
   const dispatch = useAppDispatch();
   const [titleClicked, setTitleClicked] = useState(false);
 
@@ -133,6 +134,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color:transparent;
+  z-index:999;
   
   .routeIsphone {
     width: 0;

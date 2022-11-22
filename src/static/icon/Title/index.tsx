@@ -24,7 +24,7 @@ export default function Title(props: iconProps<HTMLOrSVGElement>) {
     >
       <AniIcon needAnimation={isActive} needFill fillColor={basicColor} typename="path">
         {mapNodes(ds, "path", (d, key) => {
-          return <path  fill-rule="evenodd" clip-rule="evenodd" key={key} stroke={basicColor} strokeWidth={3} d={d} />;
+          return <path  fillRule="evenodd" clipRule="evenodd" key={key} stroke={basicColor} strokeWidth={3} d={d} />;
         })}
       </AniIcon>
       <AniIcon needAnimation={isActive} typename="rect">
