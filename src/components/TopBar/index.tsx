@@ -12,13 +12,16 @@ import getCss from "utils/getCss";
 import { changeShow } from "store/features/drawer";
 import Drawer from "components/Drawer";
 import DrawerInner from "./DrawerInner";
-import {getTheme} from 'static/color/themeColor'
+import { getTheme } from "static/color/themeColor";
+import { changeSize } from "store/features/size";
 
 export default function TopBar() {
   // 主题色
   const themeColor = useAppSelector((s) => s.style.style);
   // 夜间模式判断
-  const [isNight, setIsNight] = useState(JSON.stringify(themeColor)===JSON.stringify(getTheme(true)));
+  const [isNight, setIsNight] = useState(
+    JSON.stringify(themeColor) === JSON.stringify(getTheme(true))
+  );
   const dispatch = useAppDispatch();
   const [titleClicked, setTitleClicked] = useState(false);
 
@@ -49,11 +52,15 @@ export default function TopBar() {
   // 监听窗口变化
   const onResize = (e: UIEvent) => {
     setIsPhone((e.currentTarget! as any).innerWidth <= 1000);
+    dispatch(
+      changeSize({ width: window.innerWidth, height: window.innerHeight })
+    );
   };
 
   useEffect(() => {
     window.addEventListener("resize", onResize);
     setIsPhone(window.innerWidth <= 1000);
+    
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
@@ -134,9 +141,9 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color:transparent;
-  z-index:999;
-  
+  background-color: transparent;
+  z-index: 999;
+
   .routeIsphone {
     width: 0;
   }

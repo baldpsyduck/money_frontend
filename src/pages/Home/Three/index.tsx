@@ -4,7 +4,6 @@ import {
   Lightformer,
   OrbitControls,
   RandomizedLight,
-  useGLTF,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useAppSelector } from "store/hooks";
@@ -15,9 +14,18 @@ import SDU from "./SDU";
 import Hats from "./Hats";
 import styled from "@emotion/styled";
 import CS from "./CS";
+import { useEffect, useRef } from "react";
 
 export default function Three() {
+
   const theme = useAppSelector((s) => s.style.style);
+  const width=useAppSelector((s) => s.size.width);
+
+  const proportion=useRef(width/2048)
+
+  useEffect(() => {
+     proportion.current=width/2048;
+  },[width])
 
   return (
     <Container
@@ -106,3 +114,4 @@ const Container = styled(Canvas)`
   width: 100vw;
   height: 100vh;
 `;
+
