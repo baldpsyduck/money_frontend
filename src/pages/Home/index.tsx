@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
 import Three from "./Three";
-import { useState } from "react";
 export default function Home() {
 
-  const [active,setactive]=useState(true)
   return (
     <Container>
       <Three />

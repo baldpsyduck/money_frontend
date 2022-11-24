@@ -9,24 +9,16 @@ import { Canvas } from "@react-three/fiber";
 import { useAppSelector } from "store/hooks";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
+import ResizeContainer from "components/ResizeContainer";
 import SDU from "./SDU";
 
 import Hats from "./Hats";
 import styled from "@emotion/styled";
 import CS from "./CS";
-import { useEffect, useRef } from "react";
 
 export default function Three() {
-
   const theme = useAppSelector((s) => s.style.style);
-  const width=useAppSelector((s) => s.size.width);
-
-  const proportion=useRef(width/2048)
-
-  useEffect(() => {
-     proportion.current=width/2048;
-  },[width])
-
+  const zoom = useAppSelector((s) => s.size.zoom);
   return (
     <Container
       shadows
@@ -52,23 +44,27 @@ export default function Three() {
       </Environment>
       {/* Moon physics */}
       <Physics gravity={[0, -4, 0]}>
-        <Hats count={50} />
-        <RigidBody
-          type="fixed"
-          rotation={[Math.PI / 2, 0, (Math.PI * 3) / 4]}
-          scale={[2, 2, 2]}
-          position={[5, 0, 1]}
-        >
-          <SDU />
-        </RigidBody>
-        <RigidBody
-          type="fixed"
-          rotation={[0, 0, 0]}
-          scale={[1.5, 1, 1.5]}
-          position={[1, 0, -2]}
-        >
-          <CS />
-        </RigidBody>
+        <Hats count={50} zoom={zoom} />
+
+        <ResizeContainer zoom={zoom}>
+          <RigidBody
+            type="fixed"
+            rotation={[Math.PI / 2, 0, (Math.PI * 3) / 4]}
+            scale={[2, 2, 2]}
+            position={[5, 0, 1]}
+          >
+            <SDU />
+          </RigidBody>
+
+          <RigidBody
+            type="fixed"
+            rotation={[0, 0, 0]}
+            scale={[1.5, 1, 1.5]}
+            position={[1, 0, -2]}
+          >
+            <CS />
+          </RigidBody>
+        </ResizeContainer>
         <RigidBody position={[0, -1, 0]} type="fixed" colliders={false}>
           <CuboidCollider restitution={0.1} args={[1000, 1, 1000]} />
         </RigidBody>
@@ -114,4 +110,3 @@ const Container = styled(Canvas)`
   width: 100vw;
   height: 100vh;
 `;
-
