@@ -9,14 +9,12 @@ interface propsType extends HTMLProps<HTMLOrSVGElement> {
   typename: string;
   // 动画持续时间
   duration?: number;
-  // 是否需要填充
-  needFill?: boolean;
   // 填充颜色
   fillColor?: string;
 }
 
 export default function AniIcon(props: propsType) {
-  const { needAnimation, needFill, fillColor, typename, duration, ...other } =
+  const { needAnimation,  fillColor, typename, duration, ...other } =
     props;
   const thisId = useRef(v4());
   const [aniLens, setAniLens] = useState<(number | null)[]>([]);
@@ -41,7 +39,6 @@ export default function AniIcon(props: propsType) {
       needAnimation={needAnimation}
       childrenStyle={aniLens}
       duration={duration}
-      needFill={needFill}
       fillColor={fillColor}
       {...(other as any)}
     ></Container>
@@ -67,12 +64,23 @@ const Container = styled.g`
     }
   }
 
+  @keyframes inFillAni${(props) => props.id} {
+    from {
+      fill: ${(props) => (props as any).fillColor};
+    }
+    to {
+      fill: transparent;
+    }
+  }
+
   ${(props) =>
     (props as any).needAnimation
       ? `animation: fillAni${props.id} ${(props as any).duration || 1}s ${
           (props as any).duration || 1
         }s forwards;`
-      : ""}
+      : `animation: inFillAni${props.id} ${
+          (props as any).duration || 1
+        }s forwards;`}
 
   ${(props: any) =>
     /* 是否需要动画 */
@@ -85,7 +93,8 @@ const Container = styled.g`
           child判断是否有效
         */
         if (child)
-          return `
+          {
+            return `
             ${props.typename}:nth-of-type(${idx + 1}){
               stroke-dasharray:${child}px;
               stroke-dashoffset:${child}px ;
@@ -96,6 +105,6 @@ const Container = styled.g`
                     } forwards;`
                   : ""
               }
-            }`;
+            }`;}
       })}`}
 `;

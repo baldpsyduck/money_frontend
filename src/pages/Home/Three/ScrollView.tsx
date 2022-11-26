@@ -46,8 +46,8 @@ export default function ScrollView(props: propsType) {
           -2 * zoom
         );
         camera.current!.lookAt(zoom, 0, -2 * zoom);
-      } else if (scroll.visible(0.8 / 3, 1.2 / 3)) {
-        const num = scroll.range(0.8 / 3, 1.2 / 3);
+      } else if (scroll.visible(1.1 / 3, 1.2 / 3)) {
+        const num = scroll.range(1.1 / 3, 1.2 / 3);
         camera.current!.rotation.set(
           -1.57 - 0.28 * num,
           -0.5 * num,

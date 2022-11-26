@@ -3,14 +3,15 @@ import { useRef, useState, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Text, TrackballControls } from "@react-three/drei";
 import randomWord from "random-words";
+import useWords from "./useWords";
 
 type WordType = any;
 
 function Word(p: WordType) {
-  const { children, ...props } = p;
+  const { children, url, ...props } = p;
   const color = new THREE.Color();
   const fontProps = {
-    font: "/Inter-Bold.woff",
+    font: "/FZZJ-XWQSXTJW.TTF",
     fontSize: 2.5,
     letterSpacing: -0.05,
     lineHeight: 1,
@@ -40,7 +41,9 @@ function Word(p: WordType) {
       ref={ref}
       onPointerOver={over}
       onPointerOut={out}
-      onClick={() => console.log("clicked")}
+      onClick={() => {
+        window.open(url);
+      }}
       {...props}
       {...fontProps}
       children={children}
@@ -49,6 +52,8 @@ function Word(p: WordType) {
 }
 
 export default function Cloud({ count = 4, radius = 20 }) {
+  const getwords = useWords();
+
   // Create a count x count random words with spherical distribution
   const words = useMemo(() => {
     const temp = [];
@@ -56,19 +61,34 @@ export default function Cloud({ count = 4, radius = 20 }) {
     const phiSpan = Math.PI / (count + 1);
     const thetaSpan = (Math.PI * 2) / count;
     for (let i = 1; i < count + 1; i++)
-      for (let j = 0; j < count; j++)
+      for (let j = 0; j < count; j++) {
+        const nowWord = getwords(count * count);
         temp.push([
           new THREE.Vector3().setFromSpherical(
             spherical.set(radius, phiSpan * i, thetaSpan * j)
           ),
-          randomWord(2),
+          nowWord.name,
+          nowWord.url,
+          nowWord.weight,
         ]);
+      }
     return temp;
   }, [count, radius]);
+  const size = 0.3;
   return (
     <>
-      {words.map(([pos, word], index) => (
-        <Word key={index} position={pos} children={word} />
+      {words.map(([pos, word, url, weight], index) => (
+        <Word
+          key={index}
+          position={pos}
+          children={word}
+          url={url}
+          scale={[
+            (weight as number) * size,
+            (weight as number) * size,
+            (weight as number) * size,
+          ]}
+        />
       ))}
     </>
   );

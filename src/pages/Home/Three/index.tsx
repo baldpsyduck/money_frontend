@@ -1,12 +1,14 @@
 import {
   Environment,
   Lightformer,
+  Scroll,
   ScrollControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useAppSelector } from "store/hooks";
 import ScrollView from "./ScrollView";
 import styled from "@emotion/styled";
+import Text from './Text';
 
 export default function Three() {
   const theme = useAppSelector((s) => s.style.style);
@@ -36,6 +38,9 @@ export default function Three() {
       <color attach="background" args={[theme.basic]} />
       <ScrollControls pages={2.5}>
         <ScrollView zoom={zoom} />
+        <Scroll html>
+          <Text />
+        </Scroll>
       </ScrollControls>
       {/* Controls */}
     </Container>

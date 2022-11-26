@@ -22,7 +22,7 @@ export default function Title(props: iconProps<HTMLOrSVGElement>) {
       fill="none"
       id="svg"
     >
-      <AniIcon needAnimation={isActive} needFill fillColor={basicColor} typename="path">
+      <AniIcon needAnimation={isActive} fillColor={basicColor} typename="path">
         {mapNodes(ds, "path", (d, key) => {
           return <path  fillRule="evenodd" clipRule="evenodd" key={key} stroke={basicColor} strokeWidth={3} d={d} />;
         })}
@@ -60,7 +60,7 @@ export function TitleWithText(props: iconProps<HTMLOrSVGElement>) {
         xmlns="http://www.w3.org/2000/svg"
       >
         <Title isActive={isActive} {...other} />
-        <AniIcon needAnimation={isActive} needFill fillColor={basicColor} typename="path">
+        <AniIcon needAnimation={isActive} fillColor={basicColor} typename="path">
           {mapNodes(texts.current, "titleText", (n, key) => {
             return <path d={n} key={key} stroke={basicColor} strokeWidth={15} />;
           })}
