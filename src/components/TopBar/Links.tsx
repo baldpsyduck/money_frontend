@@ -64,7 +64,7 @@ export default function Links(props: propsType) {
       theme={{
         width: isPhone ? 0 : totalWidth.current || undefined,
         totalWidth: totalWidth.current || undefined,
-        display: isPhone ? "none":"flex" ,
+        display: isPhone ? "none" : "flex",
       }}
     >
       {mapNodes(routes, "Links", (r, key, idx) => {
@@ -104,15 +104,15 @@ export default function Links(props: propsType) {
 
 // 路由外壳
 const Routes = styled(AniContainer)`
-.active {
+  .active {
     background-color: ${basicColor};
     color: white;
   }
   display: ${(props) => (props.theme as any).display};
   overflow: hidden;
   position: relative;
-  left: ${(props)=> -(props.theme as any).totalWidth/2}px;
   width: ${(props) => (props.theme as any).width}px;
+  left:${-186+52}px;
 `;
 
 // NavLink 样式

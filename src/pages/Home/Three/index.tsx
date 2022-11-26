@@ -16,8 +16,6 @@ export default function Three() {
     <Container
       shadows
       gl={{ antialias: false }}
-      camera={{position: [-30, 35, -15], near: 30, far: 55, fov: 12}}
-      // camera={{position: [1, 3, -2], near: 1, far: 10}}
     >
       <Environment resolution={32}>
         <Lightformer position={[10, 10, 10]} scale={10} intensity={4} />
