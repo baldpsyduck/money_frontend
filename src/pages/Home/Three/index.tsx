@@ -1,8 +1,6 @@
 import {
   Environment,
   Lightformer,
-  OrbitControls,
-  Scroll,
   ScrollControls,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -18,7 +16,8 @@ export default function Three() {
     <Container
       shadows
       gl={{ antialias: false }}
-      camera={{ position: [1, 35,-2], near: 30, far: 55, fov: 7 }}
+      camera={{position: [-30, 35, -15], near: 30, far: 55, fov: 12}}
+      // camera={{position: [1, 3, -2], near: 1, far: 10}}
     >
       <Environment resolution={32}>
         <Lightformer position={[10, 10, 10]} scale={10} intensity={4} />
@@ -36,13 +35,9 @@ export default function Three() {
       </directionalLight>
       {/* Lighting, environment and colors */}
       <color attach="background" args={[theme.basic]} />
-      <ScrollControls pages={0.1}>
+      <ScrollControls pages={2}>
         <ScrollView zoom={zoom} />
       </ScrollControls>
-      {/* Effects */}
-      <EffectComposer>
-        <DepthOfField target={[0, 0, 0]} bokehScale={3} />
-      </EffectComposer>
       {/* Controls */}
     </Container>
   );

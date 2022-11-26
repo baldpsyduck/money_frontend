@@ -1,19 +1,19 @@
-import { useAnimations, useGLTF } from "@react-three/drei";
+import { useAnimations, useGLTF, useScroll } from "@react-three/drei";
 import { PrimitiveProps, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import staticColor from "static/color/staticColors";
-import * as THREE from "three";
 
 interface propsType extends Omit<PrimitiveProps, "object"> {}
 
 export default function CS(props: propsType) {
+  const { ...otherProps } = props;
   const { clock } = useThree();
   const beginT = useRef(0);
-  const { nodes, materials, scene, animations } = useGLTF(
-    "/glbs/cs.glb"
-  ) as any;
+  const { scene, animations } = useGLTF("/glbs/cs.glb") as any;
 
   const { actions } = useAnimations(animations, scene);
+
+  const scroll = useScroll();
+
   useEffect(() => {
     beginT.current = clock.elapsedTime;
   }, []);
@@ -24,11 +24,8 @@ export default function CS(props: propsType) {
   );
 
   useFrame((s, d) => {
-    
     const action = actions["circleAction.001"];
-    action!.time =
-      // (clock.elapsedTime-beginT.current)%animations[0].duration
-      0;
+    action!.time = animations[0].duration * scroll.range(0, 1 / 3) ;
   });
   return (
     <>

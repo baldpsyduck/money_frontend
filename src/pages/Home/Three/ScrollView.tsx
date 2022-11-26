@@ -1,13 +1,17 @@
 import {
   AccumulativeShadows,
   OrbitControls,
+  PivotControls,
   RandomizedLight,
   useScroll,
+  PerspectiveCamera,
+  useHelper,
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import ResizeContainer from "components/ResizeContainer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { CameraHelper, PerspectiveCamera as PerspectiveCameraType } from "three";
 import CS from "./CS";
 import Hats from "./Hats";
 import SDU from "./SDU";
@@ -23,14 +27,26 @@ export default function ScrollView(props: propsType) {
 
   const scroll = useScroll();
 
-  const {camera}=useThree()
+  const { camera:basicCamera ,set} = useThree();
+
+  const camera = useRef<PerspectiveCameraType>();
+  useHelper( camera, CameraHelper);
 
   useEffect(() => {
-    camera.rotation.set(0,0,0);
-    camera.lookAt(1*zoom, 0, -2*zoom)
-  },[])
-
+  }, []);
+  
   useFrame(() => {
+    if (scroll.visible(0, 1 / 3)) {
+      camera.current!.position.set(zoom, (20 + scroll.range(0, 1 / 3) * 10)*zoom, -2*zoom);
+      camera.current!.lookAt(zoom,0,-2*zoom)
+    } else if (scroll.visible(1 / 3, 2 / 3)) {
+      const num = scroll.range(1 / 3, 2 / 3);
+      camera.current!.rotation.set(0, 0, 0);
+      camera.current!.position.set((1 - 31 * num)*zoom, (30 - 10 * num)*zoom,( -2 - 13 * num)*zoom);
+      camera.current!.lookAt((1 - num) * zoom, 0, (2 * num - 2) * zoom);
+    }
+    set({camera:camera.current!})
+    // basicCamera.lookAt(camera.current!.position)
     setshowHats(scroll.offset > 0.98);
   });
 
@@ -38,7 +54,18 @@ export default function ScrollView(props: propsType) {
     <>
       <ambientLight intensity={0.5} />
 
-      {showHats && (
+      <PerspectiveCamera
+        makeDefault={false}
+        position={[-30, 35, -15]}
+        near={5}
+        far={80}
+        fov={12/zoom}
+        ref={camera}
+      >
+        <meshBasicMaterial />
+      </PerspectiveCamera>
+
+      {/* {showHats && (
         <OrbitControls
           autoRotate
           autoRotateSpeed={0.5}
@@ -47,28 +74,24 @@ export default function ScrollView(props: propsType) {
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 4}
         />
-      )}
+      )} */}
 
       {/* Moon physics */}
       <Physics gravity={[0, -4, 0]}>
         {showHats && <Hats count={50} zoom={zoom} />}
 
         <ResizeContainer zoom={zoom}>
-          <RigidBody
-            type="fixed"
-            rotation={[Math.PI / 2, 0, (Math.PI * 3) / 4]}
-            scale={[2, 2, 2]}
-            position={[5, 0, 1]}
-          >
-            <SDU />
-          </RigidBody>
+        <RigidBody
+          type="fixed"
+          rotation={[Math.PI / 2, 0, (Math.PI * 3) / 4]}
+          scale={[2, 2, 2]}
+          position={[5, 0, 1]}
+        >
+          <SDU />
+        </RigidBody>
 
-          <RigidBody
-            type="fixed"
-            rotation={zoom<1?[0, 5.99*Math.PI / 7, 0]:[0,0,0]}
-            scale={[1.5, 1, 1.5]}
-            position={[1, 0, -2]}
-          >
+        
+          <RigidBody type="fixed" scale={[1.5, 1, 1.5]} position={[1, 0, -2]}>
             <CS />
           </RigidBody>
         </ResizeContainer>
