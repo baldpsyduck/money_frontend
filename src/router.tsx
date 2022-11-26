@@ -3,6 +3,8 @@ import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Career from "pages/Career";
 import CharacterTest from "pages/CharacterTest";
+import EchartsTest from "./pages/Echart";
+import ChinaMap from "./pages/ChinaMap/index";
 
 export interface MyRouteObject extends RouteObject {
   name?: string;
@@ -24,6 +26,16 @@ export const routes: MyRouteObject[] = [
     path: "characterTest",
     name: "性格测试",
     element: <CharacterTest />,
+  },
+  {
+    path: "echart",
+    name: "echart",
+    element: <EchartsTest />,
+  },
+  {
+    path: "chinaMap",
+    name: "chinaMap",
+    element: <ChinaMap />,
   },
   { path: "home",  element: <Navigate to="/" /> },
   { path: "*", element: <NotFound /> },

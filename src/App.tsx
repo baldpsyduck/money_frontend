@@ -10,9 +10,10 @@ import { routes } from "router";
 import { getRoute } from "utils/mapRoutes";
 import Drawer from "components/Drawer/DrawerRoot";
 
+
 export default function App() {
   const theme = useAppSelector((s) => s.style.style);
-  /* 
+  /*
     路由
   */
   const location = useLocation();
