@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-import { MeshProps, useThree } from "@react-three/fiber";
+import { MeshProps } from "@react-three/fiber";
 import staticColor from "static/color/staticColors";
 
 interface SDUPropsType extends MeshProps {}
