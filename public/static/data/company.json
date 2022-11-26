@@ -3,6 +3,7 @@
     "companyName": "阿布",
     "number": 1,
     "link": "www.baidu.com",
+    "description": "好公司",
     "alumnus": [
       {
         "name": "koi",
@@ -15,6 +16,7 @@
     "companyName": "三撒",
     "number": 1,
     "link": "www.baidu.com",
+    "description": "好公司",
     "alumnus": [
       {
         "name": "koi",
@@ -27,6 +29,7 @@
     "companyName": "阿巴",
     "number": 1,
     "link": "www.baidu.com",
+    "description": "好公司",
     "alumnus": [
       {
         "name": "koi",
@@ -39,6 +42,7 @@
     "companyName": "气压",
     "number": 1,
     "link": "www.baidu.com",
+    "description": "好公司",
     "alumnus": [
       {
         "name": "koi",

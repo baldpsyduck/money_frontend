@@ -1,5 +1,4 @@
 export const resData = {
-    max: 218,
     data: [
         {
             name: "北京",

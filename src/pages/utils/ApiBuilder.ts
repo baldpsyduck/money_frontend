@@ -1,5 +1,5 @@
 import axios from "axios";
-let baseUrl = "";
+let baseUrl = "http://127.0.0.1:4523/m1/1990943-0-default";
 
 const service = axios.create({
     baseURL: baseUrl, // api 的 base_url

@@ -3,7 +3,7 @@ import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Career from "pages/Career";
 import CharacterTest from "pages/CharacterTest";
-import EchartsTest from "./pages/Echart";
+import EchartsTest from "./pages/EChart";
 import ChinaMap from "./pages/ChinaMap/index";
 import ProvinceMap from "./pages/ProvinceMap";
 

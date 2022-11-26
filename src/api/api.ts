@@ -3,18 +3,66 @@ import data from "../static/icon/Title/data";
 import {HTMLProps} from "react";
 
 
-let tag = "graduate"
+let tag = ""
+
+export const queryGraduateByYear = (year: string) => {
+    return ApiBuilder({
+        method: "get",
+        data: {
+            year: year
+        },
+        url: `${tag}/graduate`
+    })
+}
+
+export const queryResearchByYear = (year: string) => {
+    return ApiBuilder({
+        method: "get",
+        data: {
+            year: year
+        },
+        url: `${tag}/researchdata`
+    })
+}
+
+export const queryWorkByYear = (year: string) => {
+    return ApiBuilder({
+        method: "get",
+        data: {
+            year: year
+        },
+        url: `${tag}/workdata`
+    })
+}
+
+export const queryAllYearData = () => {
+    return ApiBuilder({
+        method: "get",
+        url: `${tag}/allyear`
+    })
+}
 
 // 返回每个省份有多少人
 export const queryProvinceList = () => {
     return ApiBuilder({
         method: "get",
-        url: `${tag}/provinceList`
+        url: `${tag}/province`
+    })
+}
+
+// 返回每个市有多少人
+export const queryCityList = (province: string) => {
+    return ApiBuilder({
+        method: "get",
+        data: {
+            province
+        },
+        url: `${tag}/city`
     })
 }
 
 // 传省份名称
-export const queryProvinceInfo = (data:string) => {
+export const queryProvinceInfo = (data: string) => {
     return ApiBuilder({
         method: "get",
         url: `${tag}/provinceInfo`,
@@ -23,10 +71,10 @@ export const queryProvinceInfo = (data:string) => {
 }
 
 // 传公司名称，返回这个公司的信息简介以及在这个公司的校友
-export const queryCompanyInfo=(data:string)=>{
+export const queryCompanyInfo = (data: string) => {
     return ApiBuilder({
-        method:"get",
-        url:`${tag}/companyInfo`,
-        data:data
+        method: "get",
+        url: `${tag}/companyInfo`,
+        data: data
     })
 }
