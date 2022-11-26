@@ -27,22 +27,19 @@ export default function ScrollView(props: propsType) {
 
   const scroll = useScroll();
 
-  const { camera:basicCamera ,set} = useThree();
+  const {set} = useThree();
 
   const camera = useRef<PerspectiveCameraType>();
-  useHelper( camera, CameraHelper);
 
-  useEffect(() => {
-  }, []);
   
   useFrame(() => {
     if (scroll.visible(0, 1 / 3)) {
-      camera.current!.position.set(zoom, (20 + scroll.range(0, 1 / 3) * 10)*zoom, -2*zoom);
+      camera.current!.position.set(zoom, (20 + scroll.range(0, 1 / 3) * 7)*zoom, -2*zoom);
       camera.current!.lookAt(zoom,0,-2*zoom)
     } else if (scroll.visible(1 / 3, 2 / 3)) {
       const num = scroll.range(1 / 3, 2 / 3);
       camera.current!.rotation.set(0, 0, 0);
-      camera.current!.position.set((1 - 31 * num)*zoom, (30 - 10 * num)*zoom,( -2 - 13 * num)*zoom);
+      camera.current!.position.set((1 - 31 * num)*zoom, (27 - 10 * num)*zoom,( -2 - 13 * num)*zoom);
       camera.current!.lookAt((1 - num) * zoom, 0, (2 * num - 2) * zoom);
     }
     set({camera:camera.current!})
@@ -91,7 +88,7 @@ export default function ScrollView(props: propsType) {
         </RigidBody>
 
         
-          <RigidBody type="fixed" scale={[1.5, 1, 1.5]} position={[1, 0, -2]}>
+          <RigidBody name="cs" type="fixed" scale={[1.5, 1, 1.5]} position={[1, 0, -2]}>
             <CS />
           </RigidBody>
         </ResizeContainer>
