@@ -8,19 +8,22 @@ interface propsType {
 }
 
 export default function EChartTemplate(props: propsType) {
+
+    const{option,style}=props
+
     const [eChartsRef, setEChartRef] = useState<any>(React.createRef())
 
     const handleChange = (value: string) => {
         console.log(`selected ${value}`);
     };
-
+    
     useEffect(() => {
         const myChart = eCharts.init(eChartsRef.current);
         // 设置样式
         eChartsRef.current.style = props.style
         // 设置对应
-        myChart.setOption(props.option);
-    }, [])
+        myChart.setOption(option);
+    },[option])
 
     return (
         <>
