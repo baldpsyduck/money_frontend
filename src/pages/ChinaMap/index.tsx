@@ -42,7 +42,7 @@ export default function ChinaMap(this: any) {
                 return a.value - b.value
             })
             let maxx = 0;
-            if(res.data&&res.data.length>=1){
+            if (res.data && res.data.length >= 1) {
                 maxx = res.data[0].value
             }
             mapInstance.setOption(
@@ -50,10 +50,11 @@ export default function ChinaMap(this: any) {
             );
             mapInstance.on('click', function (params: any) {
                 // alert(params.data.name)
-                console.log('myChart----click---:', params, '------', params.data.name);
+                // console.log('myChart----click---:', params, '------', params.data.name);
                 setIsProvince(true);
                 mapInstance.dispose();
-                setProvince(params.data.name);
+                setProvince(params.name);
+                // alert(params.name)
                 // @ts-ignore
                 // ref.current.style = "display:none";
                 // setIsModalOpen(true)

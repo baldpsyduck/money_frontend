@@ -4,6 +4,7 @@ import {chinaMapConfig} from "./config";
 import Modal from "../../components/Modal";
 import axios from "axios";
 import {resData} from "./sd";
+import {queryCityList} from "../../api/api";
 
 // import Background from '../../assets/bg.jpg';
 
@@ -27,6 +28,7 @@ export default function ProvinceMap(this: any, props: propsType) {
     const [city, setCity] = useState<string>("");
 
     let mapInstance: any = null;
+    let responseData: any = null;
 
     const renderMap = () => {
         const renderedMapInstance = echarts.getInstanceByDom(ref.current!);
@@ -41,9 +43,22 @@ export default function ProvinceMap(this: any, props: propsType) {
         //         chinaMapConfig({data: res.data.data, max: res.data.max, min: 0})
         //     );
         // })
+
+        console.log(responseData)
+        responseData.sort((a: any, b: any) => {
+            return a.value - b.value
+        })
+        let maxx = 0;
+        if (responseData && responseData.length >= 1) {
+            maxx = responseData[0].value
+        }
         mapInstance.setOption(
-            chinaMapConfig({data: resData.data, max: resData.max, min: 0, province: props.province})
+            chinaMapConfig({data: responseData, max: maxx, min: 0, province: props.province})
         );
+
+        // mapInstance.setOption(
+        //     chinaMapConfig({data: resData.data, max: resData.max, min: 0, province: props.province})
+        // );
 
         mapInstance.on('click', function (params: any) {
             // console.log('myChart----click---:', params, '------', params.data.name)
@@ -55,18 +70,24 @@ export default function ProvinceMap(this: any, props: propsType) {
 
     useEffect(() => {
         // 读取对应省份数据
-        axios.get('static/data/map/json/province/' + props.provinceFileName + '.json').then((res) => {
-            // setGeoJson(res.data);
-            echarts.registerMap(props.province!, {geoJSON: res.data});
-            renderMap();
+        queryCityList(props.province!).then((res) => {
+            responseData = res.data
         }).then(() => {
-            window.onresize = function () {
-                mapInstance.resize();
-            };
-            return () => {
-                mapInstance && mapInstance.dispose();
-            };
+            axios.get('static/data/map/json/province/' + props.provinceFileName + '.json').then((res) => {
+                // setGeoJson(res.data);
+                echarts.registerMap(props.province!, {geoJSON: res.data});
+                renderMap();
+            }).then(() => {
+                window.onresize = function () {
+                    mapInstance.resize();
+                };
+                return () => {
+                    mapInstance && mapInstance.dispose();
+                };
+            })
         })
+
+
     }, []);
 
     const divStyle = {

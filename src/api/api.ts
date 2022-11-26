@@ -61,11 +61,11 @@ export const queryCityList = (province: string) => {
     })
 }
 
-// 传省份名称
-export const queryProvinceInfo = (data: string) => {
+// 获取某市全部公司信息
+export const queryCompanyList = (city: string) => {
     return ApiBuilder({
         method: "get",
-        url: `${tag}/provinceInfo`,
+        url: `${tag}/map`,
         data: data
     })
 }
