@@ -1,8 +1,11 @@
 import React, {PureComponent, useEffect, useState} from "react";
 import * as eCharts from "echarts";
+import { Select } from 'antd';
+
 
 export default function EchartsTest() {
     const [eChartsRef, setEChartRef] = useState<any>(React.createRef())
+
 
     useEffect(() => {
         const myChart = eCharts.init(eChartsRef.current);

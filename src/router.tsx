@@ -5,6 +5,7 @@ import Career from "pages/Career";
 import CharacterTest from "pages/CharacterTest";
 import EchartsTest from "./pages/Echart";
 import ChinaMap from "./pages/ChinaMap/index";
+import ProvinceMap from "./pages/ProvinceMap";
 
 export interface MyRouteObject extends RouteObject {
   name?: string;

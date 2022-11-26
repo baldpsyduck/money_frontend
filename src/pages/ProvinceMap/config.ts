@@ -1,5 +1,5 @@
 export const chinaMapConfig = (configData:any) => {
-    const { data, max, min } = configData;
+    const { data, max, min,province } = configData;
 
     return {
         // title: {
@@ -76,13 +76,12 @@ export const chinaMapConfig = (configData:any) => {
             },
             type: "map",
             // roam: true,
-            map: "china",
+            map: province,
             // zoom: 1.2, // 当前视角的缩放比例
             // scaleLimit: {
             //     max: 2,
             //     min: 1 // 设置默认缩放效果
             // },
-            animationDelayUpdate: 300,
             top: "10%" // 距离顶部距离
 
             // data: [

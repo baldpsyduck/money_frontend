@@ -6,6 +6,10 @@ import {geoJson} from "./geojson";
 import {resData} from "./data";
 import Modal from "../../components/Modal";
 import axios from "axios";
+import ProvinceMap from "../ProvinceMap";
+import {provinceName2File} from "./provinceNameMap";
+import {Button} from "antd";
+
 
 // import Background from '../../assets/bg.jpg';
 
@@ -13,6 +17,7 @@ export default function ChinaMap(this: any) {
     const ref = useRef(null);
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [isProvince, setIsProvince] = useState<boolean>(false);
 
     function getValueFromSon(param: boolean) {
         setIsModalOpen(param)
@@ -33,31 +38,49 @@ export default function ChinaMap(this: any) {
             chinaMapConfig({data: resData.data, max: resData.max, min: 0})
         );
 
-        mapInstance.on("dbclick", function (params: any) {
-            setIsModalOpen(true)
-        })
+        // mapInstance.on('click', function (params: any) {
+        //     // alert(params.data.name)
+        //     // console.log('myChart----click---:', params, '------', params.data.name)
+        //     setIsModalOpen(true)
+        //     setProvince(params.data.name)
+        // });
+
         mapInstance.on('click', function (params: any) {
             // alert(params.data.name)
-            console.log('myChart----click---:', params, '------', params.data.name)
-            setIsModalOpen(true)
-            setProvince(params.data.name)
+            console.log('myChart----click---:', params, '------', params.data.name);
+            setIsProvince(true);
+            mapInstance.dispose();
+            setProvince(params.data.name);
+            // @ts-ignore
+            // ref.current.style = "display:none";
+            // setIsModalOpen(true)
+            // setProvince(params.data.name)
         });
 
     };
 
-    useEffect(() => {
+    const init = () => {
         echarts.registerMap("china", {geoJSON: geoJson});
         renderMap();
-    }, []);
-
-    useEffect(() => {
+        // @ts-ignore
+        // ref.current.style =
+        //     "width: \"100%\", height: \"90vh\"";
         window.onresize = function () {
             mapInstance.resize();
         };
         return () => {
             mapInstance && mapInstance.dispose();
         };
+    }
+
+    useEffect(() => {
+        setIsProvince(false)
+        init()
     }, []);
+
+    // useEffect(() => {
+    //
+    // }, []);
 
     const divStyle = {
         width: "100%",
@@ -65,17 +88,26 @@ export default function ChinaMap(this: any) {
         // backgroundImage: "url(../../assets/bg.jpg)"
         // backgroundImage: "url(" + require("../../assets/bg.jpg") + ")"
     }
-
     return (
         <div style={divStyle}>
-            <div style={{
+            {isProvince && <Button type={"primary"} onClick={() => {
+                setIsProvince(false)
+                init()
+            }}>返回</Button>}
+            {/*{!isProvince && <div style={{*/}
+            {/*    width: "100%",*/}
+            {/*    height: "90vh",*/}
+            {/*}} ref={ref}></div>}*/}
+            {<div style={{
                 width: "100%",
                 height: "90vh",
-            }}
-                 ref={ref}></div>
-            <Modal isModalOpen={isModalOpen} province={province}
-                   sendValueToFather={getValueFromSon.bind(this)}
-            />
+            }} ref={ref}/>}
+            {/*<Modal isModalOpen={isModalOpen} province={province}*/}
+            {/*       sendValueToFather={getValueFromSon.bind(this)}*/}
+            {/*/>*/}
+            {
+                isProvince && <ProvinceMap province={province} provinceFileName={provinceName2File.get(province)}/>
+            }
         </div>
     );
 }
