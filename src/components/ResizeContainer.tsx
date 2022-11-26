@@ -39,8 +39,6 @@ export default function ResizeContainer(props: propsType) {
         })
       );
     } else {
-      console.log(children);
-      
       const { props, ...other } = children;
       const { scale, position, ...otherProps } = props;
       const newPosition = position

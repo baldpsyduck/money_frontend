@@ -1,7 +1,5 @@
 import {
   AccumulativeShadows,
-  Environment,
-  Lightformer,
   OrbitControls,
   RandomizedLight,
   useScroll,
@@ -9,58 +7,51 @@ import {
 import { useFrame, useThree } from "@react-three/fiber";
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import ResizeContainer from "components/ResizeContainer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CS from "./CS";
 import Hats from "./Hats";
 import SDU from "./SDU";
-import cameraRotate from "utils/cameraRotate";
 
 interface propsType {
   zoom: number;
 }
 
-export default function ScrollOne(props: propsType) {
+export default function ScrollView(props: propsType) {
   const { zoom } = props;
+
+  const [showHats, setshowHats] = useState(false);
+
   const scroll = useScroll();
 
-  useEffect(() => {
-    console.log(scroll);
-  }, [scroll]);
+  const {camera}=useThree()
 
-  useFrame((s, d) => {
-    console.log(s);
-    const offset = 1 - scroll.offset;
-    if (offset !== 1)
-      s.camera.position.set(
-        Math.sin(offset) * -30,
-        Math.atan(offset * Math.PI * 2) * 35,
-        Math.cos((offset * Math.PI) / 3) * -15
-      );
-    else cameraRotate(s.camera, d,5);
-    s.camera.lookAt(0, 0, 0);
+  useEffect(() => {
+    camera.rotation.set(0,0,0);
+    camera.lookAt(1*zoom, 0, -2*zoom)
+  },[])
+
+  useFrame(() => {
+    setshowHats(scroll.offset > 0.98);
   });
 
   return (
     <>
       <ambientLight intensity={0.5} />
 
-      <directionalLight
-        position={[-10, 10, 5]}
-        shadow-mapSize={[256, 256]}
-        shadow-bias={-0.0001}
-        castShadow
-      >
-        <orthographicCamera attach="shadow-camera" args={[-10, 10, -10, 10]} />
-      </directionalLight>
+      {showHats && (
+        <OrbitControls
+          autoRotate
+          autoRotateSpeed={0.5}
+          enablePan={false}
+          enableZoom={false}
+          minPolarAngle={Math.PI / 4}
+          maxPolarAngle={Math.PI / 4}
+        />
+      )}
 
-      <Environment resolution={32}>
-        <Lightformer position={[10, 10, 10]} scale={10} intensity={4} />
-        <Lightformer position={[10, 0, -10]} scale={10} intensity={6} />
-        <Lightformer position={[-10, -10, -10]} scale={10} intensity={4} />
-      </Environment>
       {/* Moon physics */}
       <Physics gravity={[0, -4, 0]}>
-        <Hats count={50} zoom={zoom} />
+        {showHats && <Hats count={50} zoom={zoom} />}
 
         <ResizeContainer zoom={zoom}>
           <RigidBody
@@ -74,7 +65,7 @@ export default function ScrollOne(props: propsType) {
 
           <RigidBody
             type="fixed"
-            rotation={[0, 0, 0]}
+            rotation={zoom<1?[0, 5.99*Math.PI / 7, 0]:[0,0,0]}
             scale={[1.5, 1, 1.5]}
             position={[1, 0, -2]}
           >

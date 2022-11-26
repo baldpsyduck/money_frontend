@@ -11,7 +11,7 @@ export default function Hats({
   const { nodes, materials } = useGLTF("/glbs/hat.glb") as any;
   const positions: Vector3Array[] = Array.from({ length: count }, (_, i) => [
     (rand(2) + 1) * zoom,
-    (10 + i / 2) ,
+    (8 + i / 2) ,
     (rand(2) - 2) * zoom,
   ]);
   const rotations: Vector3Array[] = Array.from({ length: count }, () => [
