@@ -23,7 +23,6 @@ export default function CS(props: propsType) {
       if (scroll.visible(0, 1 / 3, 0.1)) {
         const num = scroll.range(0, 1 / 3);
         const { children, index } = getThreeChild(scene, ["cs", "cs_circle"]);
-        console.log(scene);
         if (children) {
           children[index].position.set(0, -0.5 + num * 0.5, 0.5 - 0.5 * num);
           children[index].rotation.set(

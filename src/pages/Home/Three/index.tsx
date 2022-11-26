@@ -7,7 +7,6 @@ import { Canvas } from "@react-three/fiber";
 import { useAppSelector } from "store/hooks";
 import ScrollView from "./ScrollView";
 import styled from "@emotion/styled";
-import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
 
 export default function Three() {
   const theme = useAppSelector((s) => s.style.style);
@@ -16,6 +15,8 @@ export default function Three() {
     <Container
       shadows
       gl={{ antialias: false }}
+      camera={{ position: [-60, 70, -30], near: 30, far: 200, fov: 80 }}
+      
     >
       <Environment resolution={32}>
         <Lightformer position={[10, 10, 10]} scale={10} intensity={4} />
@@ -33,7 +34,7 @@ export default function Three() {
       </directionalLight>
       {/* Lighting, environment and colors */}
       <color attach="background" args={[theme.basic]} />
-      <ScrollControls pages={2}>
+      <ScrollControls pages={2.5}>
         <ScrollView zoom={zoom} />
       </ScrollControls>
       {/* Controls */}
