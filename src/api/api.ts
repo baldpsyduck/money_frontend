@@ -3,13 +3,13 @@ import data from "../static/icon/Title/data";
 import {HTMLProps} from "react";
 
 
-let tag = ""
+let tag = "/user"
 
 export const queryGraduateByYear = (year: string) => {
     return ApiBuilder({
         method: "get",
-        data: {
-            year: year
+        params: {
+            "year": year
         },
         url: `${tag}/graduate`
     })
@@ -18,8 +18,8 @@ export const queryGraduateByYear = (year: string) => {
 export const queryResearchByYear = (year: string) => {
     return ApiBuilder({
         method: "get",
-        data: {
-            year: year
+        params: {
+            "year": year
         },
         url: `${tag}/researchdata`
     })
@@ -28,8 +28,8 @@ export const queryResearchByYear = (year: string) => {
 export const queryWorkByYear = (year: string) => {
     return ApiBuilder({
         method: "get",
-        data: {
-            year: year
+        params: {
+            "year": year
         },
         url: `${tag}/workdata`
     })
@@ -54,8 +54,8 @@ export const queryProvinceList = () => {
 export const queryCityList = (province: string) => {
     return ApiBuilder({
         method: "get",
-        data: {
-            province
+        params: {
+            "province":province
         },
         url: `${tag}/city`
     })
@@ -66,7 +66,9 @@ export const queryCompanyList = (city: string) => {
     return ApiBuilder({
         method: "get",
         url: `${tag}/map`,
-        data: data
+        params: {
+            "city": city
+        }
     })
 }
 

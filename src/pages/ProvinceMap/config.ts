@@ -63,14 +63,14 @@ export const chinaMapConfig = (configData:any) => {
         },
         series: {
             // 地图,可以是数组，多个
-            // label: {
-            //     show: true, //显示省市名称
-            //     position: [1, 100], // 相对的百分比
-            //     fontSize: 12,
-            //     color:"black",
-            //     offset: [2, 0],
-            //     align: "left"
-            // },
+            label: {
+                show: true, //显示省市名称
+                position: [1, 100], // 相对的百分比
+                fontSize: 12,
+                color:"black",
+                offset: [2, 0],
+                align: "left"
+            },
             itemStyle: {
                 areaColor: "#fff" // 地图图形颜色
             },

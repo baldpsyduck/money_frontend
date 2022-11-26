@@ -3,7 +3,7 @@ import React, {useRef, useEffect, useState} from "react";
 import * as echarts from "echarts";
 import {chinaMapConfig} from "./config";
 import {geoJson} from "./geojson";
-// import {resData} from "./data";
+import {resData} from "./data";
 import Modal from "../../components/Modal";
 import axios from "axios";
 import ProvinceMap from "../ProvinceMap";
@@ -37,17 +37,75 @@ export default function ChinaMap(this: any) {
         }
 
         queryProvinceList().then((res) => {
-            console.log(res.data)
-            res.data.sort((a: any, b: any) => {
-                return a.value - b.value
+            res.data = res.data.map((item: any) => {
+                item.name = item.name.replace("省", "")
+                item.name = item.name.replace("市", "")
+                return item
+            })
+            let tpArr = res.data
+            tpArr.sort((a: any, b: any) => {
+                return b.value - a.value
             })
             let maxx = 0;
-            if (res.data && res.data.length >= 1) {
-                maxx = res.data[0].value
+            if (tpArr && tpArr.length >= 1) {
+                maxx = tpArr[0].value
             }
+
+            let allList = [];
+            for (let i = 0; i < resData.data.length; i += 1) {
+                allList.push(resData.data[i].name);
+            }
+
+            // res.data.remove()
+
+            res.data = res.data.filter(function (item: any) {
+                return item.name != "澳门"
+            });
+            let backMap = new Map();
+            let originLength = res.data.length
+            let bgValue = 0;
+            for (let i = 0; i < originLength; i += 1) {
+                if (res.data[i].name === "北京") {
+                    bgValue = res.data[i].value
+                }
+                backMap.set(res.data[i].name, 0);
+            }
+            for (let i = 0; i < allList.length; i += 1) {
+                if (!backMap.has(allList[i])) {
+                    res.data.push({
+                        value: 0,
+                        name: allList[i],
+                    })
+                }
+            }
+            res.data.push({
+                value: 38,
+                name: "NULL"
+
+            })
+
+            res.data = res.data.filter(function (item: any) {
+
+                return item.name != "北京"
+            });
+            res.data.unshift({
+                    name: "北京",
+                    value: bgValue,
+                }
+            )
+
+            // console.log(res.data)
             mapInstance.setOption(
-                chinaMapConfig({data: res.data, max: maxx, min: 0})
+                chinaMapConfig({data: res.data, maxx: maxx, min: 0})
             );
+            // console.log("--------------start----------------")
+            // console.log(res.data)
+            // console.log("--------------end backend----------------")
+            // console.log(resData.data)
+            // console.log("---------------end resData---------------")
+            // mapInstance.setOption(
+            //     chinaMapConfig({data: resData.data, maxx: resData.max, min: 0})
+            // );
             mapInstance.on('click', function (params: any) {
                 // alert(params.data.name)
                 // console.log('myChart----click---:', params, '------', params.data.name);

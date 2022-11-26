@@ -1,6 +1,6 @@
 export const chinaMapConfig = (configData:any) => {
-    const { data, max, min } = configData;
-
+    const { data, maxx, min } = configData;
+    console.log("max------------"+maxx)
     return {
         // title: {
         //     // 标题组件
@@ -29,7 +29,7 @@ export const chinaMapConfig = (configData:any) => {
             type: "continuous",
             left: "right",
             min: 0,
-            max: max,
+            max: maxx,
             inRange: {
                 color: [
                     "#e5f7ff",
@@ -41,7 +41,7 @@ export const chinaMapConfig = (configData:any) => {
                     // '#5b1305'
                 ]
             },
-            text: [`最大值：${max}`, 0],
+            text: [`最大值：${maxx}`, 0],
             textStyle: {
                 color: "#000"
             }
@@ -63,14 +63,14 @@ export const chinaMapConfig = (configData:any) => {
         },
         series: {
             // 地图,可以是数组，多个
-            // label: {
-            //     show: true, //显示省市名称
-            //     position: [1, 100], // 相对的百分比
-            //     fontSize: 12,
-            //     color:"black",
-            //     offset: [2, 0],
-            //     align: "left"
-            // },
+            label: {
+                show: true, //显示省市名称
+                position: [1, 100], // 相对的百分比
+                fontSize: 12,
+                color:"black",
+                offset: [2, 0],
+                align: "left"
+            },
             itemStyle: {
                 areaColor: "#fff" // 地图图形颜色
             },

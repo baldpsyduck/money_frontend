@@ -46,7 +46,7 @@ export default function ProvinceMap(this: any, props: propsType) {
 
         console.log(responseData)
         responseData.sort((a: any, b: any) => {
-            return a.value - b.value
+            return b.value - a.value
         })
         let maxx = 0;
         if (responseData && responseData.length >= 1) {

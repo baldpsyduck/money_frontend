@@ -49,7 +49,7 @@ export default function HoverList(props: propsType) {
         //     //res.data
         //     setCompanyList(res.data)
         // })
-    }, [])
+    }, [props.city])
 
     const showModal = () => {
         setIsModalOpen(true);

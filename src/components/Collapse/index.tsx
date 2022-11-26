@@ -42,7 +42,7 @@ export default function CompanyList(props: propsType) {
             }
         }
         setCompanyList(companyList);
-    }, [])
+    }, [props.data])
 
     return (
         <Collapse defaultActiveKey={['1']} onChange={onChange}>

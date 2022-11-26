@@ -14,7 +14,7 @@ interface propsType {
 
 export default function UserDescription(props: propsType) {
     return (
-        <Descriptions >
+        <Descriptions>
             <Descriptions.Item label="姓名">{props.user.name}</Descriptions.Item>
             <Descriptions.Item label="电话">{props.user.phone}</Descriptions.Item>
             <Descriptions.Item label="邮箱">{props.user.email}</Descriptions.Item>
