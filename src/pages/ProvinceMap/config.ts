@@ -1,3 +1,5 @@
+import basicColor from 'static/color/staticColors';
+
 export const chinaMapConfig = (configData:any) => {
     const { data, max, min,province } = configData;
 

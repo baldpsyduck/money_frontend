@@ -31,10 +31,9 @@ export default function ScrollView(props: propsType) {
 
   const scroll = useScroll();
 
-  const { set, camera: curCamera } = useThree();
+  const { set } = useThree();
 
   const camera = useRef<PerspectiveCameraType>();
-  useHelper(camera, CameraHelper);
 
   const isEqual = useScrollEqual();
 
@@ -47,21 +46,20 @@ export default function ScrollView(props: propsType) {
           -2 * zoom
         );
         camera.current!.lookAt(zoom, 0, -2 * zoom);
-      } 
-      else if (scroll.visible(0.8 / 3, 1.2 / 3)) {
+      } else if (scroll.visible(0.8 / 3, 1.2 / 3)) {
         const num = scroll.range(0.8 / 3, 1.2 / 3);
-        camera.current!.rotation.set(-1.57-0.28*num, -0.5*num, -2.11*num);
+        camera.current!.rotation.set(
+          -1.57 - 0.28 * num,
+          -0.5 * num,
+          -2.11 * num
+        );
         camera.current!.position.set(
           (1 - 12.42 * num) * zoom,
           (25.53 - 4.01 * num) * zoom,
           (-2 - 5.21 * num) * zoom
         );
-        console.log(camera.current);
-      } 
-      else if (scroll.visible(1.2 / 3, 2 / 3)&&scroll.offset < 0.99) {
-        // console.log(camera.current);
+      } else if (scroll.visible(1.2 / 3, 2 / 3) && scroll.offset < 0.99) {
         const num = scroll.range(1.2 / 3, 2 / 3);
-        // camera.current!.rotation.set(0,0,0)
         camera.current!.position.set(
           (1 - 31 * num) * zoom,
           (25.53 - 10 * num) * zoom,
@@ -70,7 +68,6 @@ export default function ScrollView(props: propsType) {
         camera.current!.lookAt((1 - num) * zoom, 0, (2 * num - 2) * zoom);
       }
       set({ camera: camera.current! });
-      // curCamera.lookAt(camera.current!.position)
       setshowHats(scroll.offset > 0.98);
     }
   });
@@ -79,26 +76,25 @@ export default function ScrollView(props: propsType) {
     <>
       <ambientLight intensity={0.5} />
 
-        <PerspectiveCamera
-          makeDefault={false}
-          position={[-30, 35, -15]}
-          near={5}
-          far={80}
-          fov={12 / zoom}
-          ref={camera}
-        >
-      <PivotControls activeAxes={[true, true, true]}>
-          <meshBasicMaterial />
-      </PivotControls>
-        </PerspectiveCamera>
+      <PerspectiveCamera
+        makeDefault={false}
+        position={[-30, 35, -15]}
+        near={5}
+        far={80}
+        fov={12 / zoom}
+        ref={camera}
+      >
+        <meshBasicMaterial />
+      </PerspectiveCamera>
 
       {showHats && (
         <OrbitControls
           autoRotate
-          autoRotateSpeed={0.5}
+          autoRotateSpeed={1}
           enablePan={false}
           enableZoom={false}
-          // minPolarAngle={Math.PI / 4}
+          enableRotate={false}
+          minPolarAngle={Math.PI / 4}
           maxPolarAngle={(Math.PI * 0.8) / 2}
         />
       )}

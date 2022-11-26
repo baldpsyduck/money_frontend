@@ -10,6 +10,7 @@ import ProvinceMap from "../ProvinceMap";
 import {provinceName2File} from "./provinceNameMap";
 import {Button} from "antd";
 import {queryProvinceList} from "../../api/api";
+import styled from "@emotion/styled";
 
 
 // import Background from '../../assets/bg.jpg';
@@ -161,8 +162,8 @@ export default function ChinaMap(this: any) {
         // backgroundImage: "url(" + require("../../assets/bg.jpg") + ")"
     }
     return (
-        <div style={divStyle}>
-            {isProvince && <Button type={"primary"} onClick={() => {
+        <div style={{...divStyle,position:"relative"}}>
+            {isProvince && <Button style={{zIndex:999}} type={"primary"} onClick={() => {
                 setIsProvince(false)
                 init()
             }}>返回</Button>}
@@ -183,3 +184,4 @@ export default function ChinaMap(this: any) {
         </div>
     );
 }
+
