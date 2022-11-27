@@ -7,7 +7,6 @@ import {
   Environment,
   ContactShadows,
 } from "@react-three/drei";
-import { FaMapMarkerAlt } from "react-icons/fa";
 
 function Model(props: any) {
   /*
