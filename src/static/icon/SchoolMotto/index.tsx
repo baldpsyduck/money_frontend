@@ -9,9 +9,9 @@ export function Motto1(props: iconProps<HTMLOrSVGElement>) {
   const [_, mapNodes] = useMap();
   return (
     <svg
-      width={2084 * (size || 1) + ""}
-      height={624 * (size || 1) + ""}
-      viewBox="0 0 209 63"
+      width={53 * (size || 1) + ""}
+      height={249 * (size || 1) + ""}
+      viewBox="0 0 53 249"
       fill="none"
       id="svg"
     >
@@ -41,9 +41,9 @@ export function Motto2(props: iconProps<HTMLOrSVGElement>) {
   const [_, mapNodes] = useMap();
   return (
     <svg
-      width={2084 * (size || 1) + ""}
-      height={624 * (size || 1) + ""}
-      viewBox="0 0 209 63"
+      width={53 * (size || 1) + ""}
+      height={249 * (size || 1) + ""}
+      viewBox="0 0 53 249"
       fill="none"
       id="svg"
     >
