@@ -1,5 +1,11 @@
+import QuestionSet from "../../components/QuestionSet";
+
 export default function CharacterTest() {
-  return (
-    <div>CharacterTest</div>
-  )
+
+
+    return (
+        <div>
+            <QuestionSet/>
+        </div>
+    )
 }
