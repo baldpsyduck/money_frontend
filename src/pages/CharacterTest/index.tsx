@@ -1,11 +1,18 @@
+import styled from "@emotion/styled";
 import QuestionSet from "../../components/QuestionSet";
 
 export default function CharacterTest() {
 
 
     return (
-        <div>
+        <Container>
             <QuestionSet/>
-        </div>
+        </Container>
     )
 }
+const Container=styled.div`
+    background-color:white;
+    width:100%;
+    height:100%;
+    overflow:auto
+`
