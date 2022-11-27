@@ -93,7 +93,6 @@ export default function ScrollView(props: propsType) {
           autoRotateSpeed={1}
           enablePan={false}
           enableZoom={false}
-          enableRotate={false}
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={(Math.PI * 0.8) / 2}
         />

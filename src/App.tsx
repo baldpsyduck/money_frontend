@@ -49,4 +49,5 @@ const Container = styled(AniContainer)`
 const Info = styled.div`
   position: relative;
   flex: 1;
+  overflow:auto;
 `;
