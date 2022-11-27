@@ -118,7 +118,8 @@ export default function QuestionSet() {
         // "margin-left":"auto",
         // "margin-right":"auto",
         "margin": "0 auto",
-        "text-align": "center"
+        "text-align": "center",
+        "display": "block"
         // backgroundImage: "url(../../assets/bg.jpg)"
         // backgroundImage: "url(" + require("../../assets/bg.jpg") + ")"
     }
