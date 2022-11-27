@@ -36,7 +36,7 @@ export default function Three() {
       </directionalLight>
       {/* Lighting, environment and colors */}
       <color attach="background" args={[theme.basic]} />
-      <ScrollControls pages={2.5}>
+      <ScrollControls pages={4.5}>
         <ScrollView zoom={zoom} />
         <Scroll html>
           <Text />
