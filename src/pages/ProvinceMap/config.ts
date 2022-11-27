@@ -70,8 +70,8 @@ export const chinaMapConfig = (configData:any) => {
                 position: [1, 100], // 相对的百分比
                 fontSize: 12,
                 color:"black",
-                offset: [2, 0],
-                align: "left"
+                // offset: [2, 0],
+                align: "center"
             },
             itemStyle: {
                 areaColor: "#fff" // 地图图形颜色

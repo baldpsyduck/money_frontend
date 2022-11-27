@@ -86,7 +86,6 @@ export default function ChinaMap(this: any) {
             })
 
             res.data = res.data.filter(function (item: any) {
-
                 return item.name != "北京"
             });
             res.data.unshift({
