@@ -3,7 +3,7 @@ import { RootState } from "..";
 import colorType from 'static/types/color';
 import {getTheme} from 'static/color/themeColor'
 
-const initialState: { style: colorType } = { style:getTheme(true) };
+const initialState: { style: colorType } = { style:getTheme(false) };
 
 const styleSlice = createSlice({
   name: "style",

@@ -124,7 +124,7 @@ export default function QuestionSet() {
         // backgroundImage: "url(" + require("../../assets/bg.jpg") + ")"
     }
     return (
-        <div style={{...divStyle,position:"relative"}}>
+        <div style={{...divStyle,position:"relative",display:'flex',flexDirection:"column",alignItems:"center"}}>
             {problemElement}
             <Button type="primary" onClick={showModal}>
                 查看结果
