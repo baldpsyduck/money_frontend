@@ -20,8 +20,8 @@ export default function CS(props: propsType) {
 
   useFrame((s, d) => {
     if (!isEqual(scroll.offset)) {
-      if (scroll.visible(0, 1 / 3, 0.1)) {
-        const num = scroll.range(0, 1 / 3);
+      if (scroll.visible(0, 0.4 / 3)) {
+        const num = scroll.range(0, 0.4 / 3);
         const { children, index } = getThreeChild(scene, ["cs", "cs_circle"]);
         if (children) {
           children[index].position.set(0, -0.5 + num * 0.5, 0.5 - 0.5 * num);
